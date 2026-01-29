@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NFC Slot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- 배경 + 슬롯 -->
+  <div class="slot-bg">
+
+    <div class="reels">
+      <div class="reel" id="reel1">🍒</div>
+      <div class="reel" id="reel2">🍒</div>
+      <div class="reel" id="reel3">🍒</div>
+    </div>
+
+    <div class="result" id="result"></div>
+    <button id="betMore">BET MORE</button>
+
+    <!-- 오디오 unlock -->
+    <div id="unlock"></div>
+
+    <audio id="spinSound" src="spin.mp3" preload="auto"></audio>
+    <audio id="stopSound" src="stop.mp3" preload="auto"></audio>
+  </div>
+
+  <!-- 엔딩 텍스트 (배경 필터 영향 X) -->
+  <div id="endText" class="end-text">
+    You threw away your life<br>
+    for five minutes of fun and gambling.
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
