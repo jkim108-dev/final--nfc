@@ -21,6 +21,18 @@ const messages = [
   "Your future has disappeared."
 ];
 
+function scaleCanvas() {
+  const scaleX = window.innerWidth / 390;
+  const scaleY = window.innerHeight / 844;
+  const scale = Math.min(scaleX, scaleY);
+
+  document.querySelector(".canvas").style.transform =
+    `scale(${scale})`;
+}
+
+window.addEventListener("resize", scaleCanvas);
+scaleCanvas();
+
 let betCount = 0;
 
 /* 🔓 오디오 unlock + 클릭 해제 */
