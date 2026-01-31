@@ -25,13 +25,18 @@ body {
   transform-origin: center;
 }
 
-/* 배경 */
 .slot-bg {
   position: absolute;
   inset: 0;
-  background: url("slotmachine2.jpg") center / contain no-repeat;
+
+  background-image: url("slotmachine2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* 🔥 이게 핵심 */
+
   transition: filter 0.6s ease;
 }
+
 
 /* 릴 */
 .reels {
