@@ -27,11 +27,11 @@ function scaleCanvas() {
   let scale;
 
   if (isLandscape) {
-    // 👉 가로일 때: 가로 기준으로 꽉 채움
-    scale = vw / BASE_W;
-  } else {
-    // 👉 세로일 때: 높이 기준
+    // 🔥 가로일 때는 높이 기준으로 키운다
     scale = vh / BASE_H;
+  } else {
+    // 세로일 때는 기존 방식
+    scale = vw / BASE_W;
   }
 
   document.querySelector(".canvas").style.transform =
