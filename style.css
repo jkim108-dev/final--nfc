@@ -29,7 +29,7 @@ body {
 .slot-bg {
   position: absolute;
   inset: 0;
-  background: url("slotmachine2.jpg") center / cover no-repeat;
+  background: url("slotmachine3.jpg") center / cover no-repeat;
   transition: filter 0.6s ease;
 }
 
