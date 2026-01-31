@@ -58,7 +58,8 @@ body {
 /* 결과 텍스트 */
 .result {
   position: absolute;
-  bottom: 160px;
+  top: 560px;
+  bottom: auto;
   width: 100%;
   text-align: center;
   font-family: serif;
