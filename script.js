@@ -18,12 +18,24 @@ const stopSound = document.getElementById("stopSound");
 const BASE_W = 844;
 const BASE_H = 390;
 
-/* 캔버스 스케일 */
 function scaleCanvas() {
   const vw = window.visualViewport?.width || window.innerWidth;
   const vh = window.visualViewport?.height || window.innerHeight;
-  const scale = Math.min(vw / BASE_W, vh / BASE_H);
-  document.querySelector(".canvas").style.transform = `scale(${scale})`;
+
+  const isLandscape = vw > vh;
+
+  let scale;
+
+  if (isLandscape) {
+    // 👉 가로일 때: 가로 기준으로 꽉 채움
+    scale = vw / BASE_W;
+  } else {
+    // 👉 세로일 때: 높이 기준
+    scale = vh / BASE_H;
+  }
+
+  document.querySelector(".canvas").style.transform =
+    `scale(${scale})`;
 }
 
 window.addEventListener("resize", scaleCanvas);
