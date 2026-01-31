@@ -14,6 +14,22 @@ const endText = document.getElementById("endText");
 const spinSound = document.getElementById("spinSound");
 const stopSound = document.getElementById("stopSound");
 
+/* ===== 고정 캔버스 스케일 ===== */
+const BASE_W = 390;
+const BASE_H = 844;
+
+function scaleCanvas() {
+  const vw = window.visualViewport?.width || window.innerWidth;
+  const vh = window.visualViewport?.height || window.innerHeight;
+  const scale = Math.min(vw / BASE_W, vh / BASE_H);
+  document.querySelector(".canvas").style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("resize", scaleCanvas);
+window.visualViewport?.addEventListener("resize", scaleCanvas);
+scaleCanvas();
+
+/* ===== 슬롯 로직 ===== */
 const messages = [
   "Your tuition has disappeared.",
   "Your dream car has disappeared.",
@@ -21,21 +37,9 @@ const messages = [
   "Your future has disappeared."
 ];
 
-function scaleCanvas() {
-  const scaleX = window.innerWidth / 390;
-  const scaleY = window.innerHeight / 844;
-  const scale = Math.min(scaleX, scaleY);
-
-  document.querySelector(".canvas").style.transform =
-    `scale(${scale})`;
-}
-
-window.addEventListener("resize", scaleCanvas);
-scaleCanvas();
-
 let betCount = 0;
 
-/* 🔓 오디오 unlock + 클릭 해제 */
+/* 오디오 unlock */
 const unlock = document.getElementById("unlock");
 unlock.addEventListener("click", () => {
   spinSound.play().then(() => {
@@ -55,7 +59,6 @@ function generateNonWinning() {
   return [...symbols].sort(() => Math.random() - 0.5).slice(0,3);
 }
 
-/* 단계별 흑백 */
 function applyDecay(step) {
   const map = {
     1: [0.2, 0.95],
@@ -69,7 +72,6 @@ function applyDecay(step) {
   }
 }
 
-/* 스핀 */
 function spin(isBet) {
   betMoreBtn.disabled = true;
   result.style.opacity = 0;
@@ -80,8 +82,7 @@ function spin(isBet) {
     play(spinSound);
 
     const interval = setInterval(() => {
-      reel.textContent =
-        symbols[Math.floor(Math.random() * symbols.length)];
+      reel.textContent = symbols[Math.floor(Math.random()*symbols.length)];
     }, 80);
 
     setTimeout(() => {
@@ -96,10 +97,8 @@ function spin(isBet) {
   });
 }
 
-/* 결과 */
 function showResult(isBet) {
   betMoreBtn.disabled = false;
-
   if (!isBet) return;
 
   if (betCount === 5) {
@@ -126,7 +125,7 @@ function showResult(isBet) {
   if (betCount === 4) slotBg.classList.add("shake-4","glitch-3");
 }
 
-/* 처음 자동 스핀 */
+/* 첫 자동 스핀 */
 setTimeout(() => spin(false), 500);
 
 /* BET MORE */
