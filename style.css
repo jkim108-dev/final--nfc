@@ -36,11 +36,11 @@ body {
 /* 릴 (가로 기준 재배치) */
 .reels {
   position: absolute;
-  top: 190px;
+  top: 200px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 80px;
+  gap: 50px;
 }
 
 .reel {
