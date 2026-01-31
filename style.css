@@ -40,7 +40,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 40px;
+  gap: 10px;
 }
 
 .reel {
