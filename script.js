@@ -79,10 +79,20 @@ function applyDecay(step) {
     3: [0.6, 0.6],
     4: [0.8, 0.4]
   };
-  if (map[step]) {
-    slotBg.style.filter =
-      `grayscale(${map[step][0]}) brightness(${map[step][1]})`;
+  function applyDecay(step) {
+  const overlay = document.getElementById("fadeOverlay");
+  const map = {
+    1: 0.2,
+    2: 0.4,
+    3: 0.6,
+    4: 0.8,
+    5: 1
+  };
+  if (map[step] !== undefined) {
+    overlay.style.opacity = map[step];
   }
+}
+
 }
 
 function spin(isBet) {
