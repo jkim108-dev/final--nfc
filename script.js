@@ -15,15 +15,23 @@ const spinSound = document.getElementById("spinSound");
 const stopSound = document.getElementById("stopSound");
 
 /* ===== 고정 캔버스 스케일 ===== */
-const BASE_W = 390;
-const BASE_H = 844;
+const BASE_W = 844;
+const BASE_H = 390;
 
 function scaleCanvas() {
   const vw = window.visualViewport?.width || window.innerWidth;
   const vh = window.visualViewport?.height || window.innerHeight;
-  const scale = Math.min(vw / BASE_W, vh / BASE_H);
-  document.querySelector(".canvas").style.transform = `scale(${scale})`;
+
+  const isLandscape = vw > vh;
+
+  const scale = isLandscape
+    ? vh / BASE_H   // 가로일 땐 높이 기준
+    : Math.min(vw / BASE_W, vh / BASE_H);
+
+  document.querySelector(".canvas").style.transform =
+    `scale(${scale})`;
 }
+
 
 window.addEventListener("resize", scaleCanvas);
 window.visualViewport?.addEventListener("resize", scaleCanvas);

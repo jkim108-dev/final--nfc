@@ -19,8 +19,8 @@ body {
 
 /* 기준 캔버스 */
 .canvas {
-  width: 390px;
-  height: 844px;
+  width: 844px;
+  height: 390px;
   position: relative;
   transform-origin: center;
 }
