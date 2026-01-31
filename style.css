@@ -6,6 +6,7 @@
 
 body {
   background: black;
+  overflow: hidden;
 }
 
 .stage {
@@ -14,10 +15,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
 }
 
-/* 기준 캔버스 */
+/* 🔑 가로 기준 캔버스 */
 .canvas {
   width: 844px;
   height: 390px;
@@ -25,45 +25,39 @@ body {
   transform-origin: center;
 }
 
+/* 배경 꽉 채우기 */
 .slot-bg {
   position: absolute;
   inset: 0;
-
-  background-image: url("slotmachine2.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; /* 🔥 이게 핵심 */
-
+  background: url("slotmachine2.jpg") center / cover no-repeat;
   transition: filter 0.6s ease;
 }
 
-
-/* 릴 */
+/* 릴 (가로 기준 재배치) */
 .reels {
   position: absolute;
-  top: 390px;
+  top: 140px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 40px;
+  gap: 80px;
 }
 
 .reel {
-  width: 40px;
-  height: 40px;
+  width: 110px;
+  height: 110px;
   background: white;
   border-radius: 50%;
+  font-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.25);
 }
 
-/* 결과 텍스트 */
+/* 결과 문구 (버튼과 안 겹치게 위로) */
 .result {
   position: absolute;
-  bottom: 160px;
+  top: 260px;
   width: 100%;
   text-align: center;
   font-family: serif;
@@ -71,15 +65,16 @@ body {
   color: white;
   opacity: 0;
   transition: opacity 0.6s ease;
+  z-index: 3;
 }
 
 /* BET MORE */
 #betMore {
   position: absolute;
-  bottom: 90px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 24px;
+  padding: 10px 26px;
   background: #b00000;
   color: white;
   border-radius: 20px;
@@ -87,12 +82,13 @@ body {
   font-family: serif;
   letter-spacing: 0.15em;
   cursor: pointer;
+  z-index: 2;
   box-shadow:
     inset 0 0 6px rgba(0,0,0,0.5),
     0 0 10px rgba(255,0,0,0.4);
 }
 
-/* 오디오 unlock */
+/* unlock 레이어 */
 #unlock {
   position: fixed;
   inset: 0;
@@ -118,7 +114,7 @@ body {
 .glitch-2 { filter: hue-rotate(-15deg) contrast(1.2); }
 .glitch-3 { filter: hue-rotate(25deg) contrast(1.35) saturate(1.2); }
 
-/* 엔딩 텍스트 */
+/* 엔딩 */
 .end-text {
   position: absolute;
   inset: 0;
@@ -132,9 +128,27 @@ body {
   color: white;
   opacity: 0;
   pointer-events: none;
+  z-index: 10;
 }
 
 .end-text.show {
   opacity: 1;
   transition: opacity 1.5s ease;
+}
+
+/* 세로일 때 안내 */
+.rotate-hint {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 100;
+}
+
+@media (orientation: portrait) {
+  .rotate-hint { display: flex; }
 }

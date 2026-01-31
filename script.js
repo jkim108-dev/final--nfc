@@ -14,30 +14,23 @@ const endText = document.getElementById("endText");
 const spinSound = document.getElementById("spinSound");
 const stopSound = document.getElementById("stopSound");
 
-/* ===== 고정 캔버스 스케일 ===== */
+/* 🔑 가로 기준 */
 const BASE_W = 844;
 const BASE_H = 390;
 
+/* 캔버스 스케일 */
 function scaleCanvas() {
   const vw = window.visualViewport?.width || window.innerWidth;
   const vh = window.visualViewport?.height || window.innerHeight;
-
-  const isLandscape = vw > vh;
-
-  const scale = isLandscape
-    ? vh / BASE_H   // 가로일 땐 높이 기준
-    : Math.min(vw / BASE_W, vh / BASE_H);
-
-  document.querySelector(".canvas").style.transform =
-    `scale(${scale})`;
+  const scale = Math.min(vw / BASE_W, vh / BASE_H);
+  document.querySelector(".canvas").style.transform = `scale(${scale})`;
 }
-
 
 window.addEventListener("resize", scaleCanvas);
 window.visualViewport?.addEventListener("resize", scaleCanvas);
 scaleCanvas();
 
-/* ===== 슬롯 로직 ===== */
+/* 슬롯 메시지 */
 const messages = [
   "Your tuition has disappeared.",
   "Your dream car has disappeared.",
@@ -88,7 +81,6 @@ function spin(isBet) {
 
   reels.forEach((reel, i) => {
     play(spinSound);
-
     const interval = setInterval(() => {
       reel.textContent = symbols[Math.floor(Math.random()*symbols.length)];
     }, 80);
@@ -96,7 +88,6 @@ function spin(isBet) {
     setTimeout(() => {
       clearInterval(interval);
       reel.textContent = final[i];
-
       if (i === 2) {
         play(stopSound);
         setTimeout(() => showResult(isBet), 300);
