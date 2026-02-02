@@ -14,7 +14,6 @@ const endText = document.getElementById("endText");
 const spinSound = document.getElementById("spinSound");
 const stopSound = document.getElementById("stopSound");
 
-/* 🔑 가로 기준 */
 const BASE_W = 844;
 const BASE_H = 390;
 
@@ -27,10 +26,8 @@ function scaleCanvas() {
   let scale;
 
   if (isLandscape) {
-    // 🔥 가로일 때는 높이 기준으로 키운다
     scale = vh / BASE_H;
   } else {
-    // 세로일 때는 기존 방식
     scale = vw / BASE_W;
   }
 
@@ -42,7 +39,6 @@ window.addEventListener("resize", scaleCanvas);
 window.visualViewport?.addEventListener("resize", scaleCanvas);
 scaleCanvas();
 
-/* 슬롯 메시지 */
 const messages = [
   "Your tuition has disappeared.",
   "Your dream car has disappeared.",
@@ -52,7 +48,6 @@ const messages = [
 
 let betCount = 0;
 
-/* 오디오 unlock */
 const unlock = document.getElementById("unlock");
 unlock.addEventListener("click", () => {
   spinSound.play().then(() => {
@@ -146,10 +141,8 @@ function showResult(isBet) {
   if (betCount === 4) slotBg.classList.add("shake-4","glitch-3");
 }
 
-/* 첫 자동 스핀 */
 setTimeout(() => spin(false), 500);
 
-/* BET MORE */
 betMoreBtn.addEventListener("click", () => {
   betCount++;
   spin(true);
